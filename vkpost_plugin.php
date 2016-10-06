@@ -1,18 +1,4 @@
 <?php
-/**
- * vkpost_old plugin
- * @version 0.2.0 (2015-12-17)
- * 
- * @for MODx Evolution 1.0.x
- * 
- * @desc posting the document fields on the wall of the vk.com
- * 
- * @link https://vk.com/remote_adm
- * 
- * @author 1px(www.1px.su), Bocharsky Victor, https://github.com/Vastly
- *
- * @copyright 2015
- */
 defined('IN_MANAGER_MODE') or die();
 global $e;
 $e = &$modx->Event;
