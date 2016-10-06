@@ -11,8 +11,9 @@
 ###### 1. Подготовка.
 
 - Создать Standalone-приложение https://vk.com/editapp?act=create
-- Вставить в код ниже АЙДИ ПРИЛОЖЕНИЯ. Перейти по измененной ссылке:
-> https://oauth.vk.com/authorize?client_id=5083447&scope=groups,wall,offline,photos,market&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token
+- Вставить в код ссылки ниже АЙДИ ПРИЛОЖЕНИЯ. 
+- Перейти по измененной ссылке:
+ https://oauth.vk.com/authorize?client_id=5083447&scope=groups,wall,offline,photos,market&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token
 - Согласиться со всем, что предложит Вконтакт. Несмотря на предупреждение, скопировать из урл значение access_token.
 
 ###### 2. Установка.
@@ -34,7 +35,7 @@
 - ID ТВ для кнопки: id тв, который мы создали
 - Шаблон поста: здесь нужно ввести любой текст с тегами.
 
-***Пример:**
+**Пример:**
 > У нас акция: [\*pagetitle\*]!
 Подробнее: [\*longtitle\*]
 А также [\*content\*].
