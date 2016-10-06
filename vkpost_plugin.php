@@ -12,8 +12,6 @@
  * @author 1px(www.1px.su), Bocharsky Victor, https://github.com/Vastly
  *
  * @copyright 2015
- 
-https://vk.com/editapp?id=4995526&section=options
  */
 defined('IN_MANAGER_MODE') or die();
 global $e;
