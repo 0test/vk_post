@@ -3,12 +3,6 @@ input.vk_posted:hover{
 	background:green;
 	color:#fff;
 }
-input[type="button"].vk_post_action{
-	-border:1px solid #f00;
-}
-input[type="button"].vk_post_action:hover{
-	-border:1px solid #00008b;
-}
 .vk_post_result{
 	display:none;
 	float:none;
