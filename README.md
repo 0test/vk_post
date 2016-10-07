@@ -13,7 +13,9 @@
 - Создать Standalone-приложение https://vk.com/editapp?act=create
 - Вставить в код ссылки ниже АЙДИ ПРИЛОЖЕНИЯ. 
 - Перейти по измененной ссылке:
+```
  https://oauth.vk.com/authorize?client_id=5083447&scope=groups,wall,offline,photos,market&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token
+```
 - Согласиться со всем, что предложит Вконтакт. Несмотря на предупреждение, скопировать из урл значение access_token.
 
 ###### 2. Установка.
@@ -24,25 +26,29 @@
 - На вкладке "Системные события" выберите OnDocFormRender.
 - На вкладке "Конфигурация" в поле "Конфигурация плагина" вставьте этот текст и нажмите "Обновить параметры".
 
-> &clubId=Club ID:;string; &accessToken=AccessToken:;string; &tvName=ID ТВ для кнопки:;string; &postTemplate=Шаблон поста;textarea;Товар: [\*pagetitle\*]!
+```
+&clubId=Club ID:;string; &accessToken=AccessToken:;string; &tvName=ID ТВ для кнопки:;string; &postTemplate=Шаблон поста;textarea;Товар: [\*pagetitle\*]!
 Цена: [\*price\*]
 Подробности на сайте [this_link]
 [\*img\*]
-
+```
 ###### 3. Заполните все появившиеся поля.
+```
 - Club ID: Id группы, на стену которой вы будете постить
 - AccessToken: код, который мы получили
 - ID ТВ для кнопки: id тв, который мы создали
 - Шаблон поста: здесь нужно ввести любой текст с тегами.
+```
 
 **Пример:**
-> У нас акция: [\*pagetitle\*]!
+```
+ У нас акция: [\*pagetitle\*]!
 Подробнее: [\*longtitle\*]
 А также [\*content\*].
 Цена товара всего [\*price\*] рублей.
 [\*any_image_tv1\*][\*any_image_tv2\*]
 Подробности на сайте [this_link]
-
+```
 Свой тег у плагина только один, [this_link] - адрес текущего документа.
 Плагин разберёт шаблон и заменит теги на соответствующие значения полей и тв-параметров. Теги ТВ-параметров типа "image" будут убраны из текста, а изображения из них подгружены к посту.
 
