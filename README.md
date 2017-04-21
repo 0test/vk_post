@@ -24,15 +24,49 @@
 - Создайте плагин с названием vkpost_old
 - Вставьте в код плагина строку: include($modx->config['base_path'].'assets/plugins/vkpost_old/vkpost_plugin.php');
 - На вкладке "Системные события" выберите OnDocFormRender.
-- На вкладке "Конфигурация" в поле "Конфигурация плагина" вставьте этот текст и нажмите "Обновить параметры".
+- На вкладке "Конфигурация" в поле "Свойства" вставьте этот текст и нажмите "Обновить параметры".
 
 ```
-&clubId=Club ID:;string; &accessToken=AccessToken:;string; &tvName=ID ТВ для кнопки:;string; &postTemplate=Шаблон поста;textarea;Товар: [*pagetitle*]!
-Цена: [*price*]
-Подробности на сайте [this_link]
-[*img*]
+{
+  "clubId": [
+    {
+      "label": "Club ID:",
+      "type": "string",
+      "value": "",
+      "default": "",
+      "desc": ""
+    }
+  ],
+  "accessToken": [
+    {
+      "label": "AccessToken:",
+      "type": "string",
+      "value": "",
+      "default": "",
+      "desc": ""
+    }
+  ],
+  "tvName": [
+    {
+      "label": "ID ТВ для кнопки:",
+      "type": "string",
+      "value": "",
+      "default": "",
+      "desc": ""
+    }
+  ],
+  "postTemplate": [
+    {
+      "label": "Шаблон поста:",
+      "type": "textarea",
+      "value": "Товар: [*pagetitle*]!\nЦена: [*price*]\nПодробности на сайте [this_link]\n[*img*]",
+      "default": "",
+      "desc": ""
+    }
+  ]
+}
 ```
-### 3. Заполните все появившиеся поля.
+### 3. Заполните все появившиеся поля во вкладке "Конфигурация".
 ```
 - Club ID: Id группы, на стену которой вы будете постить
 - AccessToken: код, который мы получили
