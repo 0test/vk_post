@@ -2,7 +2,7 @@
 namespace BW;
 class Vkontakte
 {
-    const VERSION = '5.5';
+    const VERSION = '5.56';
     private $appId;
     private $secret;
     private $scope = array();
@@ -152,16 +152,24 @@ class Vkontakte
 		$uploadURL = $get_server->upload_url;
 		
 		foreach($fullServerPathToImage as $one_photo){
-			$params['file']= '@' .$one_photo;
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $uploadURL);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);			
+			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POST, true);
+			if (class_exists('\CURLFile')) {
+			$params = array('photo' => new \CURLFile($one_photo));
+			} else {
+			$params = array('photo' => '@' . $one_photo);
+			}
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-			$result = curl_exec($ch);
+			
+			$result=curl_exec($ch);
 			if($result === false){
 				$result = curl_error($ch);
-				var_dump($result);//Вот если этот вардамп исполняется, скорей всего виноват хостер, который зарубил allow_url_fopen
+				var_dump($result);
+				//	Если этот вардамп исполняется, скорей всего виноват хостер, который зарубил allow_url_fopen
 			}
 			curl_close($ch);
 			$json = json_decode($result);
@@ -172,12 +180,12 @@ class Vkontakte
 						'hash' => $json->hash,
 				]);
 				foreach($response as $photo_str){
-					$ids[]=$photo_str->id;
+					$ids[] = $photo_str->id;
 				}
 			$i++; 
 		}
 		$ids=implode(',',$ids);
-		$text = html_entity_decode($text);//На всякий	
+		$text = html_entity_decode($text);	//	Сомнительная польза. Мне надо.
 		$response = $this->api('wall.post',
             [
                 'owner_id' => -$publicID,
