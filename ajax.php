@@ -63,20 +63,35 @@ foreach ($out[1] as &$value) {
 		$tvtype=$modx->getDocumentObject('id',$docid)[$value][4];		// Тип ТВ
 		$tvname=$modx->getDocumentObject('id',$docid)[$value][0];		// Название ТВ
 		$tvContent=$modx->getDocumentObject('id',$docid)[$value][1];	// Значение тв
+		
 		if ($tvtype==='text'){
 			// Если ТВ типа текст, то добавляем его имя и значение в массив.
 			$textVariables[$tvname]=$tvContent;
 			// И тут не проверяем на пустое значение.
 		}
+		
 		if ($tvtype==='image'){
 			/*
 				Если ТВ типа image, добавляем его в другой массив.
 
 			*/
-				$imageVariables[$tvname]=$tvContent;
+			$imageVariables[$tvname]=$tvContent;
 		}
+		
+		if($tvtype =='custom_tv:multitv'){
+			/*
+				multitv	
+				Определяем если тип мультитв. Декодируем и тащим значение из поля с именем image
+			
+			*/
+				$parseMultitv = json_decode($tvContent);
+				foreach ($parseMultitv->fieldValue as $num => $one_field) {
+					$imageVariables[$tvname.$num]=$one_field->image;
+				}
+		}		
 	}
 }
+
 /*
 	Теперь у нас есть два массива с переменными нашего шаблона,
 	которым сопоставлены значения полей в документе.
