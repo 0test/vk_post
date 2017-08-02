@@ -11,8 +11,12 @@ if(empty ($modx->config)) {
 	$modx->getSettings();
 }
 
-if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') || ($_SERVER['REQUEST_METHOD'] != 'POST')) {
-	$modx->sendRedirect($modx->config['site_url']);
+if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) 
+   || (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
+   || ($_SERVER['REQUEST_METHOD'] != 'POST')
+   || !isset($_SESSION['mgrValidated'])
+  ) {
+	$modx->sendErrorPage();
 }
 
 require_once('vkwall.class.php');	// Класс для работы со стеной
