@@ -1,13 +1,19 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/manager/includes/config.inc.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/manager/includes/document.parser.class.inc.php';
-$modx = new DocumentParser;
-$modx->getSettings();
-startCMSSession();
-$modx->minParserPasses=2;
-global $e;
-$e = &$modx->Event;
+define('MODX_API_MODE', true);
+define('IN_MANAGER_MODE', true);
+
+include_once("../../../index.php");
+
+$modx->db->connect();
+
+if(empty ($modx->config)) {
+	$modx->getSettings();
+}
+
+if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') || ($_SERVER['REQUEST_METHOD'] != 'POST')) {
+	$modx->sendRedirect($modx->config['site_url']);
+}
 
 require_once('vkwall.class.php');	// Класс для работы со стеной
 
@@ -73,7 +79,6 @@ foreach ($out[1] as &$value) {
 		if ($tvtype==='image'){
 			/*
 				Если ТВ типа image, добавляем его в другой массив.
-
 			*/
 			$imageVariables[$tvname]=$tvContent;
 		}
@@ -82,16 +87,19 @@ foreach ($out[1] as &$value) {
 			/*
 				multitv	
 				Определяем если тип мультитв. Декодируем и тащим значение из поля с именем image
-			
 			*/
-				$parseMultitv = json_decode($tvContent);
-				foreach ($parseMultitv->fieldValue as $num => $one_field) {
-					$imageVariables[$tvname.$num]=$one_field->image;
+			$parseMultitv = json_decode($tvContent);
+			if(count($parseMultitv)!=0){
+				foreach ($parseMultitv->fieldValue as $num => $one_field){
+					if($one_field->image){
+						$imageVariables[$tvname] = '';
+						$imageVariables[$tvname.$num] = $one_field->image;
+					}
 				}
+			}
 		}		
 	}
 }
-
 /*
 	Теперь у нас есть два массива с переменными нашего шаблона,
 	которым сопоставлены значения полей в документе.
