@@ -180,7 +180,6 @@ class Vkontakte
 						'hash' => $json->hash,
 				]);
 				foreach($response as $photo_str){
-					$ids[] = $photo_str->id;
 					$ids[] = "photo" . $photo_str->owner_id . "_" . $photo_str->id;
 				}
 			$i++; 
