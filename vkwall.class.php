@@ -2,7 +2,7 @@
 namespace BW;
 class Vkontakte
 {
-    const VERSION = '5.56';
+    const VERSION = '5.73';
     private $appId;
     private $secret;
     private $scope = array();
@@ -114,7 +114,7 @@ class Vkontakte
         if (count($query) > 0) {
             $q .= '&'; // Add "&" sign for access_token if query exists
         }
-        $url = 'https://api.vk.com/method/' . $method . '?' . $q . 'access_token=' . $this->accessToken->access_token;
+        $url = 'https://api.vk.com/method/' . $method . '?' . $q . 'access_token=' . $this->accessToken->access_token ."&v=" . self::VERSION;
         $result = json_decode($this->curl($url));
         if (isset($result->response)) {
             return $result->response;
@@ -181,6 +181,7 @@ class Vkontakte
 				]);
 				foreach($response as $photo_str){
 					$ids[] = $photo_str->id;
+					$ids[] = "photo" . $photo_str->owner_id . "_" . $photo_str->id;
 				}
 			$i++; 
 		}
