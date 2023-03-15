@@ -2,7 +2,7 @@
 namespace BW;
 class Vkontakte
 {
-    const VERSION = '5.73';
+    const VERSION = '5.131';
     private $appId;
     private $secret;
     private $scope = array();

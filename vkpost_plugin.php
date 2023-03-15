@@ -44,19 +44,19 @@ if ($e->name == 'OnDocFormRender') //Здесь код, который выпо�
 {
 	$output .='<!-- VK POST -->'."\n";
 	$output .='<script>'."\n";
-	$output .='$j("head").append(\'<link rel="stylesheet" href="'. $modx->config['site_url'] .'assets/plugins/vkpost_old/widget.css?21">\');' ."\n";//Подключаем стиль css
+	$output .='$("head").append(\'<link rel="stylesheet" href="'. $modx->config['site_url'] .'assets/plugins/vkpost_old/widget.css?21">\');' ."\n";//Подключаем стиль css
 	$output .='mytv="#tv'.$tvName.'";'."\n"; //значение ТВ из конфига передаём в переменную для JS.
 	$output .='thisid='.$id.';' ."\n"; //ID текущего документа передаём в переменную для JS
 	//Переделываем внешний вид ТВшки
 	$output .='elems=\'<div class="vk_post_wrapper actionButtons">\';'."\n";
-	$output .='elems = elems + \'<div class="vk_post_count">Постов: \'+$j(mytv).val()+\'</div>\';'."\n";
+	$output .='elems = elems + \'<div class="vk_post_count">Постов: \'+$(mytv).val()+\'</div>\';'."\n";
 	$output .='elems = elems +\'<div class="vk_post_result">&nbsp;</div>\';' . "\n";
 	$output .='elems = elems + \'<div><input class="vk_post_action" type="button" value="Запостить"></div>\';'."\n";
 	$output .='elems = elems + \'</div>\';'."\n";
 	
-	$output .= '$j(mytv).parents("td").append(elems);'."\n";//Добавляем упр. элементы рядом с твшкой
-	$output .= '$j(mytv).hide();'."\n"; //Скрываем оригинальную твшку
-	$output .='$j("head").append(\'<script type="text/javascript" src="'. $modx->config['site_url'] .'assets/plugins/vkpost_old/events.js?2"></scr\'+\'ipt>\');' ."\n";	//Добавляем скрипт с аяком
+	$output .= '$(mytv).parents("td").append(elems);'."\n";//Добавляем упр. элементы рядом с твшкой
+	$output .= '$(mytv).hide();'."\n"; //Скрываем оригинальную твшку
+	$output .='$("head").append(\'<script type="text/javascript" src="'. $modx->config['site_url'] .'assets/plugins/vkpost_old/events.js?2"></scr\'+\'ipt>\');' ."\n";	//Добавляем скрипт с аяком
 	$output .='</script>'."\n";
 	$output .='<!-- END VK POST -->'."\n";
 	

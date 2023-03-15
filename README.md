@@ -14,7 +14,7 @@
 - Вставить в код ссылки ниже АЙДИ ПРИЛОЖЕНИЯ.
 - Перейти по измененной ссылке:
 ```
- https://oauth.vk.com/authorize?client_id=АЙДИ ПРИЛОЖЕНИЯ&scope=groups,wall,offline,photos,market&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token
+ https://oauth.vk.com/authorize?client_id=АЙДИ ПРИЛОЖЕНИЯ&scope=groups,wall,offline,photos,market&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.131&response_type=token
 ```
 - Согласиться со всем, что предложит Вконтакт. Несмотря на предупреждение, скопировать из урл значение access_token.
 
